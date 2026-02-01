@@ -1,0 +1,11 @@
+torch
+torchvision
+roma
+gradio
+einops
+trimesh
+scipy
+matplotlib
+pillow
+tqdm
+numpy
