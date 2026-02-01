@@ -1,8 +1,8 @@
 ---
 title: Multi-View 3D Reconstruction (MV3DR)
 emoji: 🎨
-colorFrom: black
-colorTo: gray
+colorFrom: gray
+colorTo: indigo
 sdk: gradio
 sdk_version: 4.44.0
 app_file: app.py
