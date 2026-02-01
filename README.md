@@ -1,3 +1,15 @@
+---
+title: Multi-View 3D Reconstruction (MV3DR)
+emoji: 🎨
+colorFrom: black
+colorTo: gray
+sdk: gradio
+sdk_version: 4.44.0
+app_file: app.py
+pinned: false
+license: cc-by-nc-sa-4.0
+---
+
 # Multi-View 3D Reconstruction (MV3DR)
 
 A web application for multi-view 3D object reconstruction using DUSt3R (Dense and Unconstrained Stereo 3D Reconstruction).
