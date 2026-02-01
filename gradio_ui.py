@@ -1,57 +1,55 @@
 import gradio as gr
 import functools
-from pathlib import Path
+import os
+
 from pipeline import run_pipeline
-
-ASSETS = Path(__file__).parent / "assets"
-CSS = (ASSETS / "style.css").read_text()
-FULLSCREEN_JS = (ASSETS / "fullscreen.js").read_text()
+from config import ASSETS_DIR, IMAGE_SIZE
 
 
-def build_ui(outdir, model, device):
+def load_assets():
+    with open(os.path.join(ASSETS_DIR, 'style.css'), 'r') as f:
+        css = f.read()
+    
+    with open(os.path.join(ASSETS_DIR, 'fullscreen.js'), 'r') as f:
+        fullscreen_js = f.read()
+    
+    return css, fullscreen_js
 
-    pipeline = functools.partial(run_pipeline, outdir, model, device, 512)
 
-    with gr.Blocks(
-        title="3D Object Reconstruction",
-        css=CSS,
-        theme=gr.themes.Base(),
-        fill_width=True,
-    ) as app:
+def build_ui(out_dir: str, model, device: str) -> gr.Blocks:
+    css, fullscreen_js = load_assets()
+    pipeline = functools.partial(run_pipeline, out_dir, model, device, IMAGE_SIZE)
 
-        gr.Markdown("# 3D Object Reconstruction")
+    with gr.Blocks(title="Multi-View 3D Reconstruction (MV3DR)", css=css, theme=gr.themes.Base(), fill_width=True) as app:
+        gr.Markdown("# Multi-View 3D Reconstruction (MV3DR)")
 
         with gr.Row():
-
             with gr.Column(scale=1):
-                files = gr.File(file_count="multiple", label="Images")
-                run_btn = gr.Button("Run Inference", variant="primary")
-
+                input_files = gr.File(file_count="multiple", label="Images")
+                run_btn = gr.Button("Run Inference")
                 with gr.Accordion("Settings", open=False):
-                    iters = gr.Slider(100, 1000, 300, step=50, label="Alignment Iteration")
-                    as_pc = gr.Checkbox(True, label="Render as Point Cloud")
-                    refine = gr.Checkbox(True, label="Filter Background Points")
-                    clean = gr.Checkbox(True, label="Clean-up depthmaps")
+                    n_iterations = gr.Slider(100, 1000, 300, label="Alignment Iterations")
+                    render_mode = gr.Checkbox(True, label="Render as Point Cloud")
+                    post_proc = gr.Checkbox(True, label="Filter Background Points")
+                    clean_depth = gr.Checkbox(True, label="Clean Point Cloud")
 
             with gr.Column(scale=2):
-                model3d = gr.Model3D(
-                    label="3D Output",
-                    height=600,
-                    elem_id="model-container",
-                )
-                fs_btn = gr.Button("Toggle Full Screen ⛶", size="sm")
+                output_model = gr.Model3D(label="3D Output", height=600, elem_id="model-container")
+                full_screen_btn = gr.Button("Toggle Full Screen ⛶", size="sm")
 
         gr.Markdown("---")
-        gallery = gr.Gallery(columns=3, label="RGB | DEPTH | CONFIDENCE")
 
-        fs_btn.click(None, None, None, js=FULLSCREEN_JS)
+        with gr.Row():
+            with gr.Column():
+                gr.Markdown("## RGB | DEPTH | CONFIDENCE")
+                artifact_gallery = gr.Gallery(columns=3, height="auto", label="Logs")
 
-        state = gr.State()
-        run_btn.click(
-            fn=pipeline,
-            inputs=[files, iters, as_pc, refine, clean],
-            outputs=[state, model3d, gallery],
-            show_progress="minimal",
-        )
+        full_screen_btn.click(None, None, None, js=fullscreen_js)
+
+        saved_state = gr.State()
+        run_btn.click(fn=pipeline,
+                      inputs=[input_files, n_iterations, render_mode, post_proc, clean_depth],
+                      outputs=[saved_state, output_model, artifact_gallery],
+                      show_progress="minimal")
 
     return app

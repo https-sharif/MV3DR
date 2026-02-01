@@ -8,9 +8,11 @@ if [ ! -d "dust3r" ]; then
   git clone -b dev --recursive https://github.com/camenduru/dust3r
 fi
 
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 
-pip install https://github.com/camenduru/wheels/releases/download/colab/curope-0.0.0-cp310-cp310-linux_x86_64.whl
+if [[ "$(uname)" == "Linux" ]]; then
+  python -m pip install https://github.com/camenduru/wheels/releases/download/colab/curope-0.0.0-cp310-cp310-linux_x86_64.whl
+fi
 
 mkdir -p dust3r/checkpoints
 
