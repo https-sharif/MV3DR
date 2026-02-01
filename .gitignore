@@ -4,5 +4,24 @@ dust3r/checkpoints/
 dust3r/dust3r.egg-info/
 __pycache__/
 
+# Binary files
+*.jpg
+*.jpeg
+*.png
+*.glb
+*.ply
+*.bin
+
+# Asset folders
+dust3r/assets/
+dust3r/croco/assets/
+results/
+
 # Gradio
 .gradio/
+
+dust3r/
+results/
+dust3r/assets/*.jpg
+dust3r/croco/assets/*.png
+results/object.glb
