@@ -1,0 +1,5 @@
+# Byte-compiled / optimized / DLL files
+venv/
+dust3r/checkpoints/
+dust3r/dust3r.egg-info/
+__pycache__/

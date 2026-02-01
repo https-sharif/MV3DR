@@ -10,6 +10,8 @@ fi
 
 pip install -r requirements.txt
 
+pip install https://github.com/camenduru/wheels/releases/download/colab/curope-0.0.0-cp310-cp310-linux_x86_64.whl
+
 mkdir -p dust3r/checkpoints
 
 WEIGHTS=dust3r/checkpoints/DUSt3R_ViTLarge_BaseDecoder_512_dpt.pth
