@@ -25,3 +25,5 @@ results/
 dust3r/assets/*.jpg
 dust3r/croco/assets/*.png
 results/object.glb
+
+.DS_Store
