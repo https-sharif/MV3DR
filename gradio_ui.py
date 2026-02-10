@@ -50,6 +50,6 @@ def build_ui(out_dir: str, model, device: str) -> gr.Blocks:
         run_btn.click(fn=pipeline,
                       inputs=[input_files, n_iterations, render_mode, post_proc, clean_depth],
                       outputs=[saved_state, output_model, artifact_gallery],
-                      show_progress="minimal")
+                      show_progress=True)
 
     return app
