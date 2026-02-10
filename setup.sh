@@ -4,9 +4,9 @@ set -e
 
 cd "$(dirname "$0")"
 
-if [ ! -d "dust3r" ]; then
-  git clone -b dev --recursive https://github.com/camenduru/dust3r
-fi
+# Clone dust3r repository (remove existing to ensure clean setup)
+rm -rf dust3r
+git clone -b dev --recursive https://github.com/camenduru/dust3r
 
 python -m pip install -r requirements.txt
 

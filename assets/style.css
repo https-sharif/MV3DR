@@ -100,6 +100,26 @@ button.primary:hover {
     50% { opacity: 0; }
 }
 
-@keyframes blink {
-    50% { opacity: 0; }
+/* Gradio loading spinner override */
+.gradio-container .loading svg circle,
+.gradio-container .pending svg circle,
+.gradio-container svg.animate-spin circle,
+.gradio-container [class*="loading"] svg circle {
+    stroke: #808080 !important;
+}
+
+.gradio-container .loading,
+.gradio-container .pending,
+.gradio-container [class*="loading"] {
+    color: #808080 !important;
+}
+
+.gradio-container .gr-loading-spinner circle {
+    stroke: #808080 !important;
+}
+
+/* Loading text */
+.gradio-container .loading-text,
+.gradio-container .status-text {
+    color: #808080 !important;
 }
