@@ -1,10 +1,33 @@
 import os
 import sys
+import subprocess
 import torch
 
-dust3r_path = os.path.join(os.path.dirname(__file__), 'dust3r')
-if dust3r_path not in sys.path:
-    sys.path.insert(0, dust3r_path)
+ROOT_DIR = os.path.dirname(__file__)
+DUST3R_REPO_DIR = os.path.join(ROOT_DIR, 'dust3r')
+_DUST3R_PKG_MARKER = os.path.join(DUST3R_REPO_DIR, 'dust3r', 'model.py')
+
+
+def _ensure_dust3r_source() -> None:
+    if os.path.exists(_DUST3R_PKG_MARKER):
+        return
+
+    print("Local DUSt3R source missing. Cloning repository...")
+    subprocess.check_call([
+        "git",
+        "clone",
+        "-b",
+        "dev",
+        "--recursive",
+        "https://github.com/camenduru/dust3r",
+        DUST3R_REPO_DIR,
+    ])
+
+
+_ensure_dust3r_source()
+
+if DUST3R_REPO_DIR not in sys.path:
+    sys.path.insert(0, DUST3R_REPO_DIR)
 
 from model import initialize
 from gradio_ui import build_ui
