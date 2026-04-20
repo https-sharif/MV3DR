@@ -2,7 +2,9 @@ import os
 import sys
 import torch
 
-sys.path.append(os.path.join(os.path.dirname(__file__), 'dust3r'))
+dust3r_path = os.path.join(os.path.dirname(__file__), 'dust3r')
+if dust3r_path not in sys.path:
+    sys.path.insert(0, dust3r_path)
 
 from model import initialize
 from gradio_ui import build_ui
