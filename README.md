@@ -1,3 +1,13 @@
+---
+title: MV3DR
+emoji: 🧊
+colorFrom: blue
+colorTo: purple
+sdk: gradio
+sdk_version: 4.19.2
+app_file: app.py
+pinned: false
+---
 # Multi-View 3D Reconstruction (MV3DR)
 
 Convert multiple 2D images into 3D models using DUSt3R (Dense and Unconstrained Stereo 3D Reconstruction). Simple web interface powered by Gradio.
