@@ -20,7 +20,12 @@ def main():
     
     print("Starting Multi-View 3D Reconstruction (MV3DR)...")
     app = build_ui(OUTPUT_DIR, model, device)
-    app.launch()
+    app.launch(
+        server_name=SERVER_NAME,
+        server_port=SERVER_PORT,
+        share=SHARE,
+        show_error=SHOW_ERROR
+    )
 
 
 if __name__ == "__main__":

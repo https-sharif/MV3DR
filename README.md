@@ -84,6 +84,12 @@ Edit `config.py` to customize:
 - Iterations (default: 300)
 - Server port (default: 7860)
 
+### Hugging Face Spaces Notes
+
+- The app binds to `0.0.0.0` by default.
+- `share` is disabled by default (Spaces does not need `share=True`).
+- Gradio dependencies are pinned in `requirements.txt` to avoid API schema parsing mismatches.
+
 ## License
 
 CC BY-NC-SA 4.0 - Non-commercial use only

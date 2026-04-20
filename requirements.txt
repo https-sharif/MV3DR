@@ -1,7 +1,8 @@
 torch
 torchvision
 roma
-gradio
+gradio==4.44.1
+gradio_client==1.3.0
 einops
 trimesh
 scipy
