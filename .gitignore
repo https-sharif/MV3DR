@@ -20,7 +20,6 @@ results/
 # Gradio
 .gradio/
 
-dust3r/
 results/
 dust3r/assets/*.jpg
 dust3r/croco/assets/*.png
