@@ -5,9 +5,7 @@ dust3r/dust3r.egg-info/
 __pycache__/
 
 # Binary files
-*.jpg
 *.jpeg
-*.png
 *.glb
 *.ply
 *.bin
@@ -19,6 +17,8 @@ results/
 
 # Gradio
 .gradio/
+
+.DS_Store
 
 dust3r/
 results/

@@ -2,24 +2,6 @@
 
 Convert multiple 2D images into 3D models using DUSt3R (Dense and Unconstrained Stereo 3D Reconstruction). Simple web interface powered by Gradio.
 
-## Live App
-
-Hugging Face Space: https://huggingface.co/spaces/sharifIslam/MV3DR
-
-## Example Results
-
-### Input Multi-View Images
-
-![Cat multi-view collage](assets/cat_multiview.jpg)
-
-### Point Cloud Output
-
-![Cat point cloud collage](assets/cat_pointcloud.png)
-
-### Mesh Output
-
-![Cat mesh collage](assets/cat_mesh.png)
-
 ## Quick Start
 
 ```bash
@@ -94,6 +76,30 @@ wget https://huggingface.co/camenduru/dust3r/resolve/main/DUSt3R_ViTLarge_BaseDe
 4. Download GLB file or view in browser
 
 **Tips**: Use 4-8 images with good overlap between views. Matte objects work better than shiny ones.
+
+## Live App
+
+Hugging Face Space: https://huggingface.co/spaces/sharifIslam/MV3DR
+
+## UI Preview
+
+| Preview 1 | Preview 2 |
+| --- | --- |
+| ![UI Preview 1](assets/preview-1.png) | ![UI Preview 2](assets/preview-2.png) |
+
+## Example Results
+
+### Input Multi-View Images
+
+![Cat multi-view collage](assets/cat_multiview.jpg)
+
+### Point Cloud Output
+
+![Cat point cloud collage](assets/cat_pointcloud.png)
+
+### Mesh Output
+
+![Cat mesh collage](assets/cat_mesh.png)
 
 ## Configuration
 
