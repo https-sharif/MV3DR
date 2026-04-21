@@ -1,6 +1,7 @@
 import os
 import sys
 import subprocess
+import urllib.request
 import torch
 
 ROOT_DIR = os.path.dirname(__file__)
@@ -24,6 +25,16 @@ def _ensure_dust3r_source() -> None:
     ])
 
 
+def _ensure_weights(weights_path: str) -> None:
+    if os.path.exists(weights_path):
+        return
+
+    os.makedirs(os.path.dirname(weights_path), exist_ok=True)
+    weights_url = "https://huggingface.co/camenduru/dust3r/resolve/main/DUSt3R_ViTLarge_BaseDecoder_512_dpt.pth"
+    print("DUSt3R checkpoint missing. Downloading model weights...")
+    urllib.request.urlretrieve(weights_url, weights_path)
+
+
 _ensure_dust3r_source()
 
 if DUST3R_REPO_DIR not in sys.path:
@@ -36,6 +47,7 @@ from config import WEIGHTS_PATH, OUTPUT_DIR, SERVER_NAME, SERVER_PORT, SHARE, SH
 
 def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
+    _ensure_weights(WEIGHTS_PATH)
     
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Using device: {device}")
