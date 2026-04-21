@@ -3,11 +3,8 @@ title: MV3DR
 emoji: 🧊
 colorFrom: blue
 colorTo: purple
-sdk: gradio
-sdk_version: 4.19.2
-app_file: app.py
+sdk: docker
 pinned: false
-python_version: 3.10
 ---
 # Multi-View 3D Reconstruction (MV3DR)
 
