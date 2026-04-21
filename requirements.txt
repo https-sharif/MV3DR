@@ -10,3 +10,4 @@ tqdm
 numpy
 opencv-python
 gradio==4.19.2
+huggingface_hub==0.20.3
