@@ -57,6 +57,7 @@ def main():
     
     print("Starting Multi-View 3D Reconstruction (MV3DR)...")
     app = build_ui(OUTPUT_DIR, model, device)
+    app.queue(api_open=False)
     app.launch(
         server_name="0.0.0.0",
         server_port=7860,
