@@ -42,7 +42,7 @@ if DUST3R_REPO_DIR not in sys.path:
 
 from model import initialize
 from gradio_ui import build_ui
-from config import WEIGHTS_PATH, OUTPUT_DIR, SERVER_NAME, SERVER_PORT, SHARE, SHOW_ERROR
+from config import WEIGHTS_PATH, OUTPUT_DIR
 
 
 def main():
@@ -58,10 +58,10 @@ def main():
     print("Starting Multi-View 3D Reconstruction (MV3DR)...")
     app = build_ui(OUTPUT_DIR, model, device)
     app.launch(
-        server_name=SERVER_NAME,
-        server_port=SERVER_PORT,
-        share=SHARE,
-        show_error=SHOW_ERROR
+        server_name="0.0.0.0",
+        server_port=7860,
+        share=False,
+        show_api=False
     )
 
 
