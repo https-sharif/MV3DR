@@ -7,6 +7,10 @@ import torch
 ROOT_DIR = os.path.dirname(__file__)
 DUST3R_REPO_DIR = os.path.join(ROOT_DIR, 'dust3r')
 _DUST3R_PKG_MARKER = os.path.join(DUST3R_REPO_DIR, 'dust3r', 'model.py')
+GRADIO_CACHE_DIR = os.path.join('/tmp', 'gradio')
+
+os.environ.setdefault("GRADIO_TEMP_DIR", GRADIO_CACHE_DIR)
+os.makedirs(GRADIO_CACHE_DIR, exist_ok=True)
 
 
 def _ensure_dust3r_source() -> None:
