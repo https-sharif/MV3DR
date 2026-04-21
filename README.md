@@ -2,6 +2,24 @@
 
 Convert multiple 2D images into 3D models using DUSt3R (Dense and Unconstrained Stereo 3D Reconstruction). Simple web interface powered by Gradio.
 
+## Live App
+
+Hugging Face Space: https://huggingface.co/spaces/sharifIslam/MV3DR
+
+## Example Results
+
+### Input Multi-View Images
+
+![Cat multi-view collage](assets/cat_multiview.jpg)
+
+### Point Cloud Output
+
+![Cat point cloud collage](assets/cat_pointcloud.png)
+
+### Mesh Output
+
+![Cat mesh collage](assets/cat_mesh.png)
+
 ## Quick Start
 
 ```bash
@@ -83,6 +101,12 @@ Edit `config.py` to customize:
 - Image size (default: 512px)
 - Iterations (default: 300)
 - Server port (default: 7860)
+
+### Hugging Face Spaces Notes
+
+- The app binds to `0.0.0.0` by default.
+- `share` is disabled by default (Spaces does not need `share=True`).
+- Gradio dependencies are pinned in `requirements.txt` to avoid API schema parsing mismatches.
 
 ## License
 
