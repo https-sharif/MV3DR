@@ -9,5 +9,6 @@ pillow
 tqdm
 numpy
 opencv-python
-gradio==4.19.2
+gradio==4.44.1
+gradio_client
 huggingface_hub==0.20.3
