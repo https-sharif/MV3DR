@@ -2,26 +2,29 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-# Copy project files
-COPY . .
-
-# Install system dependencies for OpenCV and other libraries
+# System dependencies
 RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx \
+    libgl1 \
     libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    ffmpeg \
     wget \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
+# Copy requirements first (better caching)
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose Gradio port
+# Copy project
+COPY . .
+
 EXPOSE 7860
 
-# Set environment variables for Gradio
 ENV GRADIO_SERVER_NAME=0.0.0.0
 ENV GRADIO_SERVER_PORT=7860
 
-# Run the app
 CMD ["python", "app.py"]
